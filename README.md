@@ -44,7 +44,7 @@ unzip master.zip
 sh nginx_installed.sh
 ```
 ###Возможные проблемы при использовании
-
+####1 unzip: command not found
 ```
 #unzip master.zip
 -bash: unzip: command not found
@@ -52,4 +52,14 @@ sh nginx_installed.sh
 Для решения установите пакет unzip
 ```
 apt-get install unzip
+```
+####2 ERROR: The certificate of 'github.com' is not trusted.
+```
+Connecting to github.com (github.com)|192.30.253.112|:443... connected.
+ERROR: The certificate of 'github.com' is not trusted.
+ERROR: The certificate of 'github.com' hasn't got a known issuer.
+```
+Для решения установите пакет ca-certificates
+```
+apt-get install ca-certificates
 ```
