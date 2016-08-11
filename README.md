@@ -11,6 +11,11 @@
 ##Скрипт доступен на следующих языках:
 Русский, Английский
 
+##Запуск
+* wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
+* unzip master.zip
+* sh nginx_installed.sh
+
 ##Логика работы:
 * Опеределение дистрибутива
 * Обнаружение репозиториев Nginx
