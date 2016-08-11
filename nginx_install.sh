@@ -1,5 +1,5 @@
 #!/bin/sh
-#Support http://svradmin.ru/threads/ustanovka-poslednej-versii-nginx.40/
+#Support https://github.com/alexeymalets/nginx-install-auto
 #Install Nginx mainline version 
 
 

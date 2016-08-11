@@ -12,11 +12,6 @@
 * Русский
 * Английский
 
-##Запуск
-* wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
-* unzip master.zip
-* sh nginx_installed.sh
-
 ##Логика
 * Опеределение дистрибутива
 * Обнаружение репозиториев Nginx
@@ -27,9 +22,22 @@
 При отсутствие пакета выполняется его установка.
 * Презапуск службы и вывод ошибки если служба не запустилась
 
-##Распространение:##
+##Распространение
 Лицензия GNU GPL
 
 Автор не несёт ответственность за сбои, которые могут возникнут при использование скрипта. 
 
 Вы используйте его на свой страх и риск.
+
+
+##Запуск
+* wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
+* unzip master.zip
+* sh nginx_installed.sh
+
+###Возможные проблемы при использование
+
+#### unzip master.zip
+#### -bash: unzip: command not found
+Для решения установите пакет unzip
+#### apt-get install unzip
