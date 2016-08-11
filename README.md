@@ -43,7 +43,7 @@ unzip master.zip
 ```
 sh nginx_installed.sh
 ```
-###Возможные проблемы при использование
+###Возможные проблемы при использовании
 
 ```
 #unzip master.zip
