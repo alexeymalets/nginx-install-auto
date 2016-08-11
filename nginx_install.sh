@@ -63,7 +63,7 @@ if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
 			echo "Nginx is successfully updated to the latest version!"				
 		else
 			echo "${RED}${BOLD}Unfortunately, during the upgrade package error! To solve the problem, write on the forum:${NORMAL}"
-			echo "${BOLD}http://svradmin.ru/threads/ustanovka-poslednej-versii-nginx.40/#post-164${NORMAL}"
+			echo "${BOLD}https://github.com/alexeymalets/nginx-install-auto/issues${NORMAL}"
 			echo "Error:$(tail -n 10 /var/log/nginxerror.log)"
 		fi
 	else
@@ -74,7 +74,7 @@ if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
 		read -p "Choose: " upradesystem
 		if [ $upradesystem -eq 1 ]; then
 			echo "${GREEN}Getting update Nginx${NORMAL}"
-			apt-get update && apt-get -y dist-upgrade
+			apt-get update && apt-get -y upgrade nginx
 			echo "${GREEN}Restart Nginx${NORMAL}"
 			service nginx restart
 			echo "${GREEN}Check the operation of the service${NORMAL}"
@@ -97,10 +97,21 @@ else
 	read -p "Choose: " installnginx
 	if [ $installnginx -eq 1 ]; then
 		echo "${GREEN}Remove repositories with Nginx${NORMAL}"
-		grep -rl "nginx.org" /etc/apt/
-		apt-get update && apt-get -y dist-upgrade
+		sed -i '/nginx.org/d' $(grep -rl "nginx.org" /etc/apt/)
+		touch nginx.list
+		echo "deb http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list.d/nginx.list
+		echo "deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list/nginx.list
+		apt-get update && apt-get -y upgrade nginx
 		echo "${BOLD}${GREEN}Nginx has been successfully updated${NORMAL}"
 		service nginx restart
+		echo "${GREEN}Check the operation of the service${NORMAL}"
+		if [ -z $(service nginx status | grep "inactive") ]; then
+			echo "Nginx is successfully updated to the latest version!"				
+		else
+			echo "${RED}${BOLD}Unfortunately, during the upgrade package error! To solve the problem, write on the forum:${NORMAL}"
+			echo "${BOLD}http://svradmin.ru/threads/ustanovka-poslednej-versii-nginx.40/#post-164${NORMAL}"
+			echo "Error:$(tail -n 10 /var/log/nginxerror.log)"
+		fi
 	else
 		echo "${BOLD}${RED}You refused to update.${NORMAL}"
 	fi
