@@ -41,7 +41,7 @@ unzip master.zip
 ```
 Переходим в директорию со скриптом и устанавливаем права 777
 ```
-cd nginx-install-auto-master && chmod 777 nginx_installed.sh
+cd nginx-install-auto-master && chmod 777 nginx_install.sh
 ```
 Запускаем скрипт
 ```
