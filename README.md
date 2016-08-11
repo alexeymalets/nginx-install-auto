@@ -9,7 +9,8 @@
 * Ubuntu 14, 15, 16
 
 ##Скрипт доступен на следующих языках:
-Русский, Английский
+* Русский
+* Английский
 
 ##Запуск
 * wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
