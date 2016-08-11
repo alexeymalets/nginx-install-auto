@@ -39,7 +39,7 @@ wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
 ```
 unzip master.zip
 ```
-Переходим в директорию со скриптом
+Переходим в директорию со скриптом и устанавливаем права 777
 ```
 cd nginx-install-auto-master
 ```

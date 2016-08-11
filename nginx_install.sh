@@ -43,8 +43,8 @@ if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
 
 	echo "${GREEN}Adding repository Nginx${NORMAL}"
 	touch nginx.list
-	echo 'deb http://nginx.org/packages/mainline/${dist}/ ${osv} nginx' | tee -a /etc/apt/sources.list.d/nginx.list
-	echo 'deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx' | tee -a /etc/apt/sources.list/nginx.list
+	echo "deb http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list.d/nginx.list
+	echo "deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list/nginx.list
 
 	echo "${GREEN}Adding key${NORMAL}"
 	cd
