@@ -37,7 +37,11 @@
 
 ###Возможные проблемы при использование
 
-#### unzip master.zip
-#### -bash: unzip: command not found
+```
+#unzip master.zip
+-bash: unzip: command not found
+```
 Для решения установите пакет unzip
-#### apt-get install unzip
+```
+apt-get install unzip
+```
