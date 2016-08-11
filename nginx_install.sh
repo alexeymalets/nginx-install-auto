@@ -54,30 +54,40 @@ if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
 	echo "${GREEN}Check installed Nginx${NORMAL}"
 
 	if [ -z "$(dpkg -l|grep nginx)" ]; then
-			echo "Install nginx"
-			apt-get update && apt-get -y install nginx
+		echo "${BOLD}${GREEN}Install nginx${NORMAL}"
+		apt-get update && apt-get -y install nginx
+		echo "${GREEN}Restart Nginx${NORMAL}"
+		service nginx restart
+		echo "${GREEN}Check the operation of the service${NORMAL}"
+		if [ -z $(service nginx status | grep "inactive") ]; then
+			echo "Nginx is successfully updated to the latest version!"				
 		else
-			echo "${BOLD}${GREEN}Nginx is already installed.${NORMAL}"
-			echo "${GREEN}We perform a complete upgrade of the Nginx?${NORMAL}"
-			echo "1) Yes"
-			echo "2) No"
-			read -p "Choose: " upradesystem
-			if [ $upradesystem -eq 1 ]; then
-				echo "${GREEN}Getting update Nginx${NORMAL}"
-				apt-get update && apt-get -y dist-upgrade
-				echo "${GREEN}Restart Nginx${NORMAL}"
-				service nginx restart
-				echo "${GREEN}Check the operation of the service${NORMAL}"
-				if [ -z $(service nginx status | grep "inactive") ]; then
-					echo "Nginx is successfully updated to the latest version!"				
-				else
-					echo "${RED}${BOLD}Unfortunately, during the upgrade package error! To solve the problem, write on the forum:${NORMAL}"
-					echo "${BOLD}http://svradmin.ru/threads/ustanovka-poslednej-versii-nginx.40/#post-164${NORMAL}"
-					echo "Error:$(tail -n 10 /var/log/nginxerror.log)"
-				fi
+			echo "${RED}${BOLD}Unfortunately, during the upgrade package error! To solve the problem, write on the forum:${NORMAL}"
+			echo "${BOLD}http://svradmin.ru/threads/ustanovka-poslednej-versii-nginx.40/#post-164${NORMAL}"
+			echo "Error:$(tail -n 10 /var/log/nginxerror.log)"
+		fi
+	else
+		echo "${BOLD}${GREEN}Nginx is already installed.${NORMAL}"
+		echo "${GREEN}We perform a complete upgrade of the Nginx?${NORMAL}"
+		echo "1) Yes"
+		echo "2) No"
+		read -p "Choose: " upradesystem
+		if [ $upradesystem -eq 1 ]; then
+			echo "${GREEN}Getting update Nginx${NORMAL}"
+			apt-get update && apt-get -y dist-upgrade
+			echo "${GREEN}Restart Nginx${NORMAL}"
+			service nginx restart
+			echo "${GREEN}Check the operation of the service${NORMAL}"
+			if [ -z $(service nginx status | grep "inactive") ]; then
+				echo "Nginx is successfully updated to the latest version!"				
 			else
-				echo "${BOLD}${RED}You refused to update.${NORMAL}"
+				echo "${RED}${BOLD}Unfortunately, during the upgrade package error! To solve the problem, write on the forum:${NORMAL}"
+				echo "${BOLD}http://svradmin.ru/threads/ustanovka-poslednej-versii-nginx.40/#post-164${NORMAL}"
+				echo "Error:$(tail -n 10 /var/log/nginxerror.log)"
 			fi
+		else
+			echo "${BOLD}${RED}You refused to update.${NORMAL}"
+		fi
 	fi
 else
 	echo "${BOLD}${RED}You already have installed Nginx repository.${NORMAL}"
