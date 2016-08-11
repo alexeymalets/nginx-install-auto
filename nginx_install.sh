@@ -44,7 +44,7 @@ if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
 	echo "${GREEN}Adding repository Nginx${NORMAL}"
 	touch nginx.list
 	echo "deb http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list.d/nginx.list
-	echo "deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list/nginx.list
+	echo "deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list.d/nginx.list
 
 	echo "${GREEN}Adding key${NORMAL}"
 	cd
@@ -96,11 +96,17 @@ else
 	echo "2) No"
 	read -p "Choose: " installnginx
 	if [ $installnginx -eq 1 ]; then
+		echo "${GREEN}Go to the directory /etc/apt/sources.list.d/${NORMAL}"
+		cd /etc/apt/sources.list.d/
 		echo "${GREEN}Remove repositories with Nginx${NORMAL}"
-		sed -i '/nginx.org/d' $(grep -rl "nginx.org" /etc/apt/)
+		for listnginx in $(grep -rl "nginx.org" /etc/apt/)
+		do
+			sed -i '/nginx.org/d' $listnginx
+			echo $listnginx
+		done
 		touch nginx.list
 		echo "deb http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list.d/nginx.list
-		echo "deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list/nginx.list
+		echo "deb-src http://nginx.org/packages/mainline/${dist}/ ${osv} nginx" | tee -a /etc/apt/sources.list.d/nginx.list
 		apt-get update && apt-get -y upgrade nginx
 		echo "${BOLD}${GREEN}Nginx has been successfully updated${NORMAL}"
 		service nginx restart
