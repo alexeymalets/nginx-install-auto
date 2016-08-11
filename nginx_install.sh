@@ -13,29 +13,27 @@ clear
 if [ "$(cat /etc/*-release | grep xenial)" ]; then
 	dist=ubuntu
 	osv=xenial
-fi
 #OS Version Ubuntu 15
-if [ "$(cat /etc/*-release | grep wily)" ]; then
+elif [ "$(cat /etc/*-release | grep wily)" ]; then
 	dist=ubuntu
 	osv=wily
 	dist=ubuntu
-fi
 #OS Version Ubuntu 14
-if [ "$(cat /etc/*-release | grep trusty)" ]; then
+elif [ "$(cat /etc/*-release | grep trusty)" ]; then
 	dist=ubuntu
 	osv=trusty
-fi
 #OS Version Debian 8
-if [ "$(cat /etc/*-release | grep jessie)" ]; then
+elif [ "$(cat /etc/*-release | grep jessie)" ]; then
 	dist=debian
 	osv=jessie
-fi
 #OS Version Debian 7
-if [ "$(cat /etc/*-release | grep wheezy)" ]; then
+elif [ "$(cat /etc/*-release | grep wheezy)" ]; then
 	dist=debian
 	osv=wheezy
+else
+	echo "${BOLD}Your operating system is not supported!${NORMAL}"
 fi
-echo "${BOLD}${BGRED} Your OS ${dist} ${osv}${NORMAL}"
+echo "${BOLD}${BGRED}Your OS ${dist} ${osv}${NORMAL}"
 
 if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
 	echo "${GREEN}Go to the directory /etc/apt/sources.list.d/${NORMAL}"
