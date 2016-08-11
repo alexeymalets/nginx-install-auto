@@ -31,10 +31,18 @@
 
 
 ##Запуск
-* wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
-* unzip master.zip
-* sh nginx_installed.sh
-
+Скачиваем архив со скриптом с GitHub
+```
+wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
+```
+Распаковываем архив
+```
+unzip master.zip
+```
+Запускаем скрипт
+```
+sh nginx_installed.sh
+```
 ###Возможные проблемы при использование
 
 ```
