@@ -45,7 +45,7 @@ cd nginx-install-auto-master && chmod 777 nginx_installed.sh
 ```
 Запускаем скрипт
 ```
-sh nginx_installed.sh
+sh nginx_install.sh
 ```
 ###Возможные проблемы при использовании
 ####1 unzip: command not found
