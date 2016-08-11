@@ -39,6 +39,10 @@ wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
 ```
 unzip master.zip
 ```
+Переходим в директорию со скриптом
+```
+cd nginx-install-auto-master
+```
 Запускаем скрипт
 ```
 sh nginx_installed.sh
