@@ -54,6 +54,11 @@ sh nginx_install.sh
 -bash: unzip: command not found
 ```
 Для решения установите пакет unzip
+#####Centos
+```
+yum install -y unzip
+```
+#####Debian/Ubuntu
 ```
 apt-get install -y unzip
 ```

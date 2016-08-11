@@ -33,7 +33,9 @@ elif [ "$(cat /etc/*-release | grep wheezy)" ]; then
 	osv=wheezy
 else
 	echo "${BOLD}Your operating system is not supported!${NORMAL}"
+	break
 fi
+
 echo "${BOLD}${BGRED}Your OS ${dist} ${osv}${NORMAL}"
 
 if [ -z "$(grep -rn "nginx.org" /etc/apt/)" ]; then
