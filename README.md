@@ -55,7 +55,7 @@ sh nginx_install.sh
 ```
 Для решения установите пакет unzip
 ```
-apt-get install unzip
+apt-get install -y unzip
 ```
 ####2 ERROR: The certificate of 'github.com' is not trusted.
 ```
@@ -65,5 +65,5 @@ ERROR: The certificate of 'github.com' hasn't got a known issuer.
 ```
 Для решения установите пакет ca-certificates
 ```
-apt-get install ca-certificates
+apt-get install -y ca-certificates
 ```
