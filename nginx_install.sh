@@ -8,6 +8,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 BGRED='\033[41m'
 NORMAL='\033[0m'
+
 clear
 #OS Version Ubuntu 16
 if [ "$(cat /etc/*-release | grep xenial)" ]; then
