@@ -33,7 +33,7 @@ elif [ "$(cat /etc/*-release | grep wheezy)" ]; then
 	osv=wheezy
 else
 	echo "${BOLD}Your operating system is not supported!${NORMAL}"
-	break
+	exit 0
 fi
 
 echo "${BOLD}${BGRED}Your OS ${dist} ${osv}${NORMAL}"
