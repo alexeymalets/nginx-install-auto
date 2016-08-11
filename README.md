@@ -68,6 +68,6 @@ ERROR: The certificate of 'github.com' hasn't got a known issuer.
 apt-get install -y ca-certificates
 ```
 
-###Партнёры
+##Партнёры
 * Платное администрирование 24/7 https://myhosti.pro/
 * Бесплатная помощь в администрировании http://svradmin.ru/
