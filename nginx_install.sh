@@ -234,10 +234,10 @@ else
 fi
 if [ $checknginxstatus -eq 1 ]; then
 	echo "${GREEN}${loc_restart_nginx}${NORMAL}"
-	if [ "${dist}" = "debian" ] || [ "${osv}" = "8" ] && [ "${dist}" = "ubuntu" ] || [ "${osv}" = "xenial" ] && [ "${dist}" = "centos" ] || [ "${osv}" = "7" ]; then
+	if [ "${dist}" = "debian" ] && [ "${osv}" = "8" ] || [ "${dist}" = "ubuntu" ] && [ "${osv}" = "xenial" ] || [ "${dist}" = "centos" ] && [ "${osv}" = "7" ]; then
 		systemctl restart nginx
 		echo "${GREEN}${loc_status_nginx}${NORMAL}"
-		if [ -z "$(systemctl status nginx | grep "inactive")" ] || [ -z "$(systemctl status nginx | grep "failed")" ]; then
+		if [ -z "$(systemctl status nginx | grep "inactive")" ] && [ -z "$(systemctl status nginx | grep "failed")" ]; then
 			echo "${loc_upgrade_nginx_sf}!"		
 		else
 			echo "${RED}${BOLD}${loc_upgrade_nginx_faild}${NORMAL}"
@@ -250,7 +250,7 @@ if [ $checknginxstatus -eq 1 ]; then
 	else
 		service nginx restart
 		echo "${GREEN}${loc_status_nginx}${NORMAL}"
-		if [ -z "$(service nginx status | grep "stopped")" ] || [ -z "$(service nginx status | grep "failed")" ]; then
+		if [ -z "$(service nginx status | grep stopped)" ] && [ -z "$(service nginx status | grep failed)" ]; then
 			echo "${loc_upgrade_nginx_sf}!"		
 		else
 			echo "${RED}${BOLD}${loc_upgrade_nginx_faild}${NORMAL}"
