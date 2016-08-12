@@ -62,19 +62,19 @@ elif [ "$(cat /etc/*-release | grep wheezy)" ]; then
 	dist=debian
 	osv=wheezy
 #OS Version Centos 5
-elif [ "$(cat /etc/*-release | grep 'CentOS release 5')" ]; then
+elif [ "$(cat /etc/*-release | grep 'CentOS release 5')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 5')" ]; then
 	dist=centos
 	osv=5
 #OS Version Centos 6
-elif [ "$(cat /etc/*-release | grep 'CentOS release 6')" ]; then
+elif [ "$(cat /etc/*-release | grep 'CentOS release 6')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 6')" ]; then
 	dist=centos
 	osv=6
 #OS Version Centos 7
-elif [ "$(cat /etc/*-release | grep 'CentOS Linux release 7')" ]; then
+elif [ "$(cat /etc/*-release | grep 'CentOS Linux release 7')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 7')" ]; then
 	dist=centos
 	osv=7
 else
-	echo "${BOLD}${loc_none_script}${NORMAL}"
+	echo "${BOLD}${loc_none_script}!${NORMAL}"
 	exit 0
 fi
 

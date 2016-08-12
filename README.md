@@ -7,7 +7,7 @@ To minimize time-consuming, we decided to not write a great script that will sim
 ##Supported ОS
 * Debian 7,8
 * Ubuntu 12,14,15,16
-* CentOS 5,6,7
+* CentOS/CloudLinux 5,6,7
 
 ##Localization
 * Russian
