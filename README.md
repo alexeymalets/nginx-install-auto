@@ -4,7 +4,7 @@ Increasingly, customers are requested to upgrade Nginx to the latest version.
 
 To minimize time-consuming, we decided to not write a great script that will simplify the process of install/upgrade Nginx to the latest version(mainline).
 
-##Supported ОС
+##Supported ОS
 * Debian 7,8
 * Ubuntu 12,14,15,16
 * CentOS 5,6,7
