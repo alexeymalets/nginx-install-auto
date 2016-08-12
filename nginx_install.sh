@@ -30,7 +30,7 @@ loc_status_nginx='Check the status of the service'
 loc_upgrade_nginx_sf='Nginx is successfully updated to the latest version'
 loc_upgrade_nginx_faild='Unfortunately, during the upgrade had problems, so service nezapominam. To solve You can write to:'
 loc_srv_admin='Free help with server administration'
-loc_myhosti='The administration department'
+loc_myhosti='Support your servers 24/7'
 loc_error='Error'
 loc_thanks_soft='Thank you for using this software!'
 
@@ -62,11 +62,11 @@ elif [ "$(cat /etc/*-release | grep wheezy)" ]; then
 	dist=debian
 	osv=wheezy
 #OS Version Centos 5
-elif [ "$(cat /etc/*-release | grep "CentOS release 5")" ]; then
+elif [ "$(cat /etc/*-release | grep "CentOS")" ] && [ "$(cat /etc/*-release | grep "5")" ]; then
 	dist=centos
 	osv=5
 #OS Version Centos 6
-elif [ "$(cat /etc/*-release | grep "CentOS release 6")" ]; then
+elif [ "$(cat /etc/*-release | grep "CentOS")" ] && [ "$(cat /etc/*-release | grep "6")" ]; then
 	dist=centos
 	osv=6
 #OS Version Centos 7
@@ -234,16 +234,31 @@ else
 fi
 if [ $checknginxstatus -eq 1 ]; then
 	echo "${GREEN}${loc_restart_nginx}${NORMAL}"
-	service nginx restart
-	echo "${GREEN}${loc_status_nginx}${NORMAL}"
-	if [ -z "$(service nginx status | grep "stopped")" ] || [ -z "$(service nginx status | grep "inactive")" ] || [ -z "$(service nginx status | grep "failed")" ]; then
-		echo "${loc_upgrade_nginx_sf}!"		
+	if [ "${dist}" = "debian" ] || [ "${osv}" = "8" ] && [ "${dist}" = "ubuntu" ] || [ "${osv}" = "xenial" ] && [ "${dist}" = "centos" ] || [ "${osv}" = "7" ]; then
+		systemctl restart nginx
+		echo "${GREEN}${loc_status_nginx}${NORMAL}"
+		if [ -z "$(systemctl status nginx | grep "inactive")" ] || [ -z "$(systemctl status nginx | grep "failed")" ]; then
+			echo "${loc_upgrade_nginx_sf}!"		
+		else
+			echo "${RED}${BOLD}${loc_upgrade_nginx_faild}${NORMAL}"
+			echo "${BOLD}GitHub https://github.com/alexeymalets/nginx-install-auto/issues${NORMAL}"
+			echo "${BOLD}${loc_srv_admin} http://svradmin.ru/${NORMAL}"
+			echo "${BOLD}${loc_myhosti}(24/7) https://myhosti.pro${NORMAL}"
+			echo "${loc_error} :$(systemctl status nginx.service
+			)"
+		fi
 	else
-		echo "${RED}${BOLD}${loc_upgrade_nginx_faild}${NORMAL}"
-		echo "${BOLD}GitHub https://github.com/alexeymalets/nginx-install-auto/issues${NORMAL}"
-		echo "${BOLD}${loc_srv_admin} http://svradmin.ru/${NORMAL}"
-		echo "${BOLD}${loc_myhosti}(24/7) https://myhosti.pro${NORMAL}"
-		echo "${loc_error} :$(tail -n 10 /var/log/nginx/error.log)"
+		service nginx restart
+		echo "${GREEN}${loc_status_nginx}${NORMAL}"
+		if [ -z "$(service nginx status | grep "stopped")" ] || [ -z "$(service nginx status | grep "failed")" ]; then
+			echo "${loc_upgrade_nginx_sf}!"		
+		else
+			echo "${RED}${BOLD}${loc_upgrade_nginx_faild}${NORMAL}"
+			echo "${BOLD}GitHub https://github.com/alexeymalets/nginx-install-auto/issues${NORMAL}"
+			echo "${BOLD}${loc_srv_admin} http://svradmin.ru/${NORMAL}"
+			echo "${BOLD}${loc_myhosti}(24/7) https://myhosti.pro${NORMAL}"
+			echo "${loc_error} :$(tail -n 10 /var/log/nginx/error.log)"
+		fi
 	fi
 fi
 

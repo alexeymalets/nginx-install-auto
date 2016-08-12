@@ -1,57 +1,49 @@
-# Установка/Обновление Nginx
+# Install/Upgrade Nginx
 
-Все чаще и чаще клиенты обращаются с просьбой обновить Nginx до последней версии.
+Increasingly, customers are requested to upgrade Nginx to the latest version.
 
-Для минимизации временных затрат, мы решили написать не большой скрипт, который автоматизирует процесс установки/обновления Nginx до последней версии(mainline).
+To minimize time-consuming, we decided to not write a great script that will simplify the process of install/upgrade Nginx to the latest version(mainline).
 
-##Поддерживаемые ОС
+##Supported ОС
 * Debian 7,8
 * Ubuntu 12,14,15,16
 * CentOS 5,6,7
 
-##Локализация
-* Русский
-* Английский
+##Localization
+* Russian
+* English
 
-##Логика
-* Опеределение дистрибутива
-* Обнаружение репозиториев Nginx
-* Обнаружение ключей Nginx
-* Проверка наличия установленного Nginx
-* Презапуск службы и вывод ошибки, если служба не запущена(Alpha)
+##Logic
+* Definition of distribution
+* Detect repositories with Nginx
+* Detection of key Nginx
+* Check installed Nginx
+* Restart the service and the error if the service is not running
 
-##Распространение
-Лицензия GNU GPL
-
-Автор не несёт ответственность за сбои, которые могут возникнут при использование скрипта. 
-
-Вы используйте его на свой страх и риск.
-
-
-##Запуск
-Скачиваем архив со скриптом с GitHub
+##Start
+Download the archive with the script from GitHub
 ```
 wget https://github.com/alexeymalets/nginx-install-auto/archive/master.zip
 ```
-Распаковываем архив
+Unpack the archive
 ```
 unzip master.zip
 ```
-Переходим в директорию со скриптом и устанавливаем права 777
+Go to directory with script and set permissions 777
 ```
 cd nginx-install-auto-master && chmod 777 nginx_install.sh
 ```
-Запускаем скрипт
+Run the script
 ```
 sh nginx_install.sh
 ```
-###Возможные проблемы при использовании
+###Possible problems when using
 ####1 unzip: command not found
 ```
 #unzip master.zip
 -bash: unzip: command not found
 ```
-Для решения установите пакет unzip
+To resolve install the package unzip
 #####Centos
 ```
 yum install -y unzip
@@ -66,11 +58,18 @@ Connecting to github.com (github.com)|192.30.253.112|:443... connected.
 ERROR: The certificate of 'github.com' is not trusted.
 ERROR: The certificate of 'github.com' hasn't got a known issuer.
 ```
-Для решения установите пакет ca-certificates
+To resolve install the package ca-certificates
 ```
 apt-get install -y ca-certificates
 ```
 
-##Партнёры
-* Платное администрирование 24/7 https://myhosti.pro/
-* Бесплатная помощь в администрировании http://svradmin.ru/
+##Distribution
+The GNU GPL license
+
+The author is not responsible for failures that may arise during the use of the script. 
+
+You use it at your own risk.
+
+##Partners
+* Support your servers 24/7 https://myhosti.pro/
+* Free support your servers http://svradmin.ru/
