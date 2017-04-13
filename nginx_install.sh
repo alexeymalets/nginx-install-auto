@@ -34,8 +34,15 @@ loc_myhosti='Support your servers 24/7'
 loc_error='Error'
 loc_thanks_soft='Thank You for using this software!'
 loc_ver_repo='Which version would You like to install ?'
+not_root='[!]Log in as root and restart the script.'
 
 clear
+
+if [ $USER != 'root' ]; then
+  echo "${not_root}"
+  exit 0
+fi
+
 #OS Version Ubuntu 16
 if [ "$(cat /etc/*-release | grep xenial)" ]; then
 	dist=ubuntu

@@ -34,9 +34,14 @@ loc_myhosti='В платный отдел администрирования'
 loc_error='Ошибка'
 loc_thanks_soft='Спасибо за использование данного ПО!'
 loc_ver_repo='Какой вариант Вы бы хотели установить? ?'
-
+not_root='Войдите под root пользователем и повторите запуск скрипта.'
 
 clear
+
+if [ $USER != 'root' ]; then
+  echo "${not_root}"
+  exit 0
+fi
 #OS Version Ubuntu 16
 if [ "$(cat /etc/*-release | grep xenial)" ]; then
 	dist=ubuntu
