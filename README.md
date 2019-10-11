@@ -5,9 +5,9 @@ Increasingly, customers are requested to upgrade Nginx to the latest version.
 To minimize time-consuming, we decided to not write a great script that will simplify the process of install/upgrade Nginx to the latest version(mainline).
 
 ##Supported ОS
-* Debian 7,8
-* Ubuntu 12,14,15,16
-* CentOS/CloudLinux 5,6,7
+* Debian 7,8,9,10
+* Ubuntu 12,14,15,16,18
+* CentOS/CloudLinux 5,6,7,8
 
 ##Localization
 * Russian
@@ -72,4 +72,3 @@ You use it at your own risk.
 
 ##Partners
 * Support your servers 24/7 https://myhosti.pro/
-* Free support your servers http://svradmin.ru/

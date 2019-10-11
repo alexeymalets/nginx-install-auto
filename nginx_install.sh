@@ -43,8 +43,12 @@ if [ $USER != 'root' ]; then
   exit 0
 fi
 
+#OS Version Ubuntu 18
+if [ "$(cat /etc/*-release | grep bionic)" ]; then
+	dist=ubuntu
+	osv=bionic
 #OS Version Ubuntu 16
-if [ "$(cat /etc/*-release | grep xenial)" ]; then
+elif [ "$(cat /etc/*-release | grep xenial)" ]; then
 	dist=ubuntu
 	osv=xenial
 #OS Version Ubuntu 15
@@ -60,6 +64,14 @@ elif [ "$(cat /etc/*-release | grep trusty)" ]; then
 elif [ "$(cat /etc/*-release | grep precise)" ]; then
 	dist=ubuntu
 	osv=precise
+#OS Version Debian 10
+elif [ "$(cat /etc/*-release | grep buster)" ]; then
+	dist=debian
+	osv=buster
+#OS Version Debian 9
+elif [ "$(cat /etc/*-release | grep stretch)" ]; then
+	dist=debian
+	osv=stretch
 #OS Version Debian 8
 elif [ "$(cat /etc/*-release | grep jessie)" ]; then
 	dist=debian
@@ -68,18 +80,22 @@ elif [ "$(cat /etc/*-release | grep jessie)" ]; then
 elif [ "$(cat /etc/*-release | grep wheezy)" ]; then
 	dist=debian
 	osv=wheezy
-#OS Version Centos 5
-elif [ "$(cat /etc/*-release | grep 'CentOS release 5')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 5')" ]; then
+#OS Version Centos 8
+elif [ "$(cat /etc/*-release | grep 'CentOS Linux release 8')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 8')" ]; then
 	dist=centos
-	osv=5
-#OS Version Centos 6
-elif [ "$(cat /etc/*-release | grep 'CentOS release 6')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 6')" ]; then
-	dist=centos
-	osv=6
+	osv=8
 #OS Version Centos 7
 elif [ "$(cat /etc/*-release | grep 'CentOS Linux release 7')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 7')" ]; then
 	dist=centos
 	osv=7
+#OS Version Centos 6
+elif [ "$(cat /etc/*-release | grep 'CentOS release 6')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 6')" ]; then
+	dist=centos
+	osv=6
+#OS Version Centos 5
+elif [ "$(cat /etc/*-release | grep 'CentOS release 5')" ] || [ "$(cat /etc/*-release | grep 'CloudLinux release 5')" ]; then
+	dist=centos
+	osv=5
 else
 	echo "${loc_none_script}!"
 	exit 0
